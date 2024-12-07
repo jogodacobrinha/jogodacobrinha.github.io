@@ -1,7 +1,4 @@
 // Elementos da página
-const introScreen = document.querySelector(".intro-screen");
-const gameContainer = document.querySelector(".game-container");
-const proceedButton = document.getElementById("proceedButton");
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const startButton = document.getElementById("startButton");
@@ -15,12 +12,6 @@ let score = 0;
 let snake, food, specialFood, dx, dy, gameOver;
 let specialFoodTimeout;
 let foodCounter = 0;
-
-// Mostra o jogo após clicar em "Jogar"
-proceedButton.addEventListener("click", () => {
-    introScreen.style.display = "none"; // Esconde a tela de introdução
-    gameContainer.style.display = "block"; // Mostra o container do jogo
-});
 
 // Gera comida em posição aleatória
 function generateFood() {
