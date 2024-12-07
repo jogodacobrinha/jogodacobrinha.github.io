@@ -7,50 +7,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Tela de introdução -->
     <div class="intro-screen">
         <h1>Bem-vindo ao Jogo da Cobrinha!</h1>
-        <p>Divirta-se com este clássico jogo retrô. Antes de começar, veja as instruções:</p>
-        <ul class="instructions">
-            <li>Use as <strong>setas do teclado</strong> para mover a cobrinha (ou os botões de controle no celular).</li>
-            <li>Coma as bolinhas vermelhas para ganhar <strong>1 ponto</strong>.</li>
-            <li>Bolinhas amarelas aparecem a cada 10 vermelhas e valem <strong>50 pontos</strong>, mas somem após 1 minuto!</li>
-            <li>Evite bater nas paredes ou no próprio corpo!</li>
-        </ul>
-        <div class="tips">
-            <h3>Dicas:</h3>
-            <p>Mantenha atenção no tempo das bolinhas amarelas e planeje seus movimentos!</p>
-        </div>
-        <div class="creator-info">
-            <p>Desenvolvido por: <a href="https://joao12394.github.io" target="_blank">Susta</a></p>
-        </div>
+        <p>
+            Regras e Dicas:
+            <ul>
+                <li>Coma as comidas vermelhas para ganhar 1 ponto.</li>
+                <li>A cada 10 comidas vermelhas, aparece uma comida amarela valendo 50 pontos.</li>
+                <li>Se não pegar a comida amarela em 1 minuto, ela desaparece.</li>
+            </ul>
+        </p>
+        <p>
+            Criado por <a href="https://joao12394.github.io" target="_blank">Susta</a>
+        </p>
         <button id="proceedButton">Jogar</button>
     </div>
+
+    <!-- Tela do jogo -->
     <div class="game-container" style="display: none;">
         <h1>Jogo da Cobrinha</h1>
-        <div class="game-content">
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
-            <div class="score-panel">
-                <h2>Pontuação</h2>
-                <p id="score">0</p>
-                <div class="info">
-                    <p><span class="red-dot"></span> Vermelha: 1 ponto</p>
-                    <p><span class="yellow-dot"></span> Amarela: 50 pontos</p>
-                </div>
-            </div>
+        <div class="score-panel">
+            <p><strong>Pontuação:</strong> <span id="score">0</span></p>
+            <p><strong>Vermelha:</strong> 1 ponto</p>
+            <p><strong>Amarela:</strong> 50 pontos</p>
         </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
         <div id="buttons">
             <button id="startButton">Iniciar</button>
             <button id="restartButton" style="display: none;">Reiniciar</button>
         </div>
-        <div class="controls">
-            <button class="control-btn" data-dir="up">▲</button>
-            <div class="horizontal-controls">
-                <button class="control-btn" data-dir="left">◀</button>
-                <button class="control-btn" data-dir="right">▶</button>
-            </div>
-            <button class="control-btn" data-dir="down">▼</button>
-        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
