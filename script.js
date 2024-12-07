@@ -10,6 +10,7 @@ let snake, food, dx, dy, gameOver;
 // Botões de controle
 const startButton = document.getElementById("startButton");
 const restartButton = document.getElementById("restartButton");
+const controlButtons = document.querySelectorAll(".control-btn");
 
 // Função para gerar a comida em posição aleatória
 function generateFood() {
@@ -22,67 +23,51 @@ function generateFood() {
 function drawGame() {
     if (gameOver) return;
 
-    // Atualiza a posição da cobra
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
-    // Verifica colisão com as paredes
     if (head.x < 0 || head.x >= canvasSize || head.y < 0 || head.y >= canvasSize || isCollisionWithBody(head)) {
         gameOver = true;
         ctx.fillStyle = "#fff";
         ctx.font = "30px Arial";
         ctx.fillText("Game Over", 120, canvasSize / 2);
-        restartButton.style.display = "inline-block";  // Mostra o botão de reiniciar
+        restartButton.style.display = "inline-block";
         return;
     }
 
-    snake.unshift(head); // Adiciona a nova cabeça à frente da cobra
+    snake.unshift(head);
 
-    // Verifica se a cobra comeu a comida
     if (head.x === food.x && head.y === food.y) {
         score += 10;
-        generateFood(); // Gera uma nova comida
+        generateFood();
     } else {
-        snake.pop(); // Remove a última parte da cobra
+        snake.pop();
     }
 
-    // Limpa o canvas
     ctx.clearRect(0, 0, canvasSize, canvasSize);
 
-    // Desenha a borda limitadora (linha onde a cobra pode chegar)
-    ctx.strokeStyle = "#fff"; // Cor da linha
+    ctx.strokeStyle = "#fff";
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(canvasSize - 1, 0);
     ctx.lineTo(canvasSize - 1, canvasSize);
     ctx.stroke();
 
-    // Desenha a cobra
     ctx.fillStyle = "#00FF00";
     snake.forEach(segment => {
         ctx.fillRect(segment.x, segment.y, gridSize, gridSize);
     });
 
-    // Desenha a comida
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(food.x, food.y, gridSize, gridSize);
 
-    // Atualiza o placar
     document.getElementById("score").textContent = `Pontuação: ${score}`;
-
-    setTimeout(drawGame, 100); // Atualiza o jogo a cada 100ms
+    setTimeout(drawGame, 100);
 }
 
-// Verifica se a cobra colidiu com seu próprio corpo
 function isCollisionWithBody(head) {
-    for (let i = 1; i < snake.length; i++) {
-        if (snake[i].x === head.x && snake[i].y === head.y) {
-            return true;
-        }
-    }
-    return false;
+    return snake.some(segment => segment.x === head.x && segment.y === head.y);
 }
 
-// Função para controlar os movimentos da cobra
 function changeDirection(event) {
     if (event.key === "ArrowUp" && dy === 0) {
         dx = 0;
@@ -102,7 +87,30 @@ function changeDirection(event) {
     }
 }
 
-// Função para iniciar o jogo
+function handleMobileControls() {
+    controlButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const dir = btn.getAttribute("data-dir");
+            if (dir === "up" && dy === 0) {
+                dx = 0;
+                dy = -gridSize;
+            }
+            if (dir === "down" && dy === 0) {
+                dx = 0;
+                dy = gridSize;
+            }
+            if (dir === "left" && dx === 0) {
+                dx = -gridSize;
+                dy = 0;
+            }
+            if (dir === "right" && dx === 0) {
+                dx = gridSize;
+                dy = 0;
+            }
+        });
+    });
+}
+
 function startGame() {
     score = 0;
     gameOver = false;
@@ -114,19 +122,16 @@ function startGame() {
     dx = gridSize;
     dy = 0;
     generateFood();
-    restartButton.style.display = "none";  // Esconde o botão de reiniciar
-    startButton.style.display = "none";   // Esconde o botão de iniciar
+    restartButton.style.display = "none";
+    startButton.style.display = "none";
     drawGame();
 }
 
-// Função para reiniciar o jogo
 function restartGame() {
     startGame();
 }
 
-// Eventos para os botões
 startButton.addEventListener("click", startGame);
 restartButton.addEventListener("click", restartGame);
-
-// Inicia o jogo ao pressionar uma tecla
 document.addEventListener("keydown", changeDirection);
+handleMobileControls();
