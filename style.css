@@ -17,6 +17,7 @@ body {
 
 .game-container {
     text-align: center;
+    position: relative;
 }
 
 h1 {
@@ -92,4 +93,30 @@ button:disabled {
     background-color: #555;
     transform: scale(0.9);
     transition: transform 0.1s;
+}
+
+/* Info lateral */
+.info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: #fff;
+    text-align: left;
+}
+
+.red-dot, .yellow-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.red-dot {
+    background-color: red;
+}
+
+.yellow-dot {
+    background-color: yellow;
 }
