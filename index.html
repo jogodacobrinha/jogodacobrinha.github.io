@@ -7,7 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
+    <div class="intro-screen">
+        <h1>Bem-vindo ao Jogo da Cobrinha!</h1>
+        <p>Divirta-se com este clássico jogo retrô. Antes de começar, veja as instruções:</p>
+        <ul class="instructions">
+            <li>Use as <strong>setas do teclado</strong> para mover a cobrinha (ou os botões de controle no celular).</li>
+            <li>Coma as bolinhas vermelhas para ganhar <strong>1 ponto</strong>.</li>
+            <li>Bolinhas amarelas aparecem a cada 10 vermelhas e valem <strong>50 pontos</strong>, mas somem após 1 minuto!</li>
+            <li>Evite bater nas paredes ou no próprio corpo!</li>
+        </ul>
+        <div class="tips">
+            <h3>Dicas:</h3>
+            <p>Mantenha atenção no tempo das bolinhas amarelas e planeje seus movimentos!</p>
+        </div>
+        <div class="creator-info">
+            <p>Desenvolvido por: <a href="https://joao12394.github.io" target="_blank">João</a></p>
+        </div>
+        <button id="proceedButton">Jogar</button>
+    </div>
+    <div class="game-container" style="display: none;">
         <h1>Jogo da Cobrinha</h1>
         <div class="game-content">
             <canvas id="gameCanvas" width="400" height="400"></canvas>
