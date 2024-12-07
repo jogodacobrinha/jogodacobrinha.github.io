@@ -1,4 +1,3 @@
-/* Estilo base */
 * {
     margin: 0;
     padding: 0;
@@ -12,129 +11,71 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    text-align: center;
 }
 
-/* Tela inicial */
-.intro-screen {
-    max-width: 600px;
-    padding: 20px;
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.intro-screen,
+.game-container {
+    text-align: center;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+ul {
     text-align: left;
-}
-
-.intro-screen h1 {
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.instructions {
-    margin: 10px 0;
-    list-style-type: disc;
+    margin: 20px 0;
     padding-left: 20px;
-    color: #555;
 }
 
-.tips {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #333;
-}
-
-.creator-info {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.creator-info a {
-    color: #0066cc;
+a {
+    color: #007BFF;
     text-decoration: none;
-    font-weight: bold;
 }
 
-.creator-info a:hover {
+a:hover {
     text-decoration: underline;
 }
 
-#proceedButton {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
+button {
     background-color: #333;
-    color: #fff;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-#proceedButton:hover {
+button:hover {
     background-color: #555;
 }
 
-/* Estilo do jogo (mantido) */
-.game-container {
-    text-align: center;
-}
-
-.game-content {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
+button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
 }
 
 #gameCanvas {
     background-color: #222;
     border: 2px solid #fff;
     border-radius: 10px;
+    display: block;
+    margin: 20px auto;
 }
 
 .score-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 200px;
-    height: fit-content;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.score-panel h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.score-panel #score {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.info {
-    font-size: 14px;
+    margin-top: 10px;
     text-align: left;
-    width: 100%;
-}
-
-.red-dot, .yellow-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.red-dot {
-    background-color: red;
-}
-
-.yellow-dot {
-    background-color: yellow;
+    font-size: 16px;
+    color: #333;
 }
