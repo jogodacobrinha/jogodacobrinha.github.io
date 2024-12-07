@@ -1,6 +1,5 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-const startButton = document.getElementById('startButton');
 const restartButton = document.getElementById('restartButton');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
@@ -139,7 +138,6 @@ function startGame() {
     foodYellow = false;
     yellowFoodTimer = 60;
     interval = setInterval(gameLoop, 100);
-    startButton.style.display = 'none';
     restartButton.style.display = 'block';
 }
 
@@ -147,6 +145,7 @@ function restartGame() {
     startGame();
 }
 
-startButton.addEventListener('click', startGame);
+startGame(); // Start game automatically when page loads
+
 restartButton.addEventListener('click', restartGame);
 window.addEventListener('keydown', event => snake.changeDirection(event));
