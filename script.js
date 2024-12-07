@@ -1,25 +1,33 @@
-// Configuração inicial do jogo
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const gridSize = 20;
 const canvasSize = 400;
 let score = 0;
-let snake, food, dx, dy, gameOver;
+let snake, redFood, yellowFood, dx, dy, gameOver;
+let redFoodCount = 0;
+let yellowFoodTimer;
 
 // Botões de controle
 const startButton = document.getElementById("startButton");
 const restartButton = document.getElementById("restartButton");
 const controlButtons = document.querySelectorAll(".control-btn");
 
-// Função para gerar a comida em posição aleatória
-function generateFood() {
+function generateFood(type) {
     const x = Math.floor(Math.random() * (canvasSize / gridSize)) * gridSize;
     const y = Math.floor(Math.random() * (canvasSize / gridSize)) * gridSize;
-    food = { x, y };
+
+    if (type === "red") {
+        redFood = { x, y };
+    } else if (type === "yellow") {
+        yellowFood = { x, y };
+        clearTimeout(yellowFoodTimer);
+        yellowFoodTimer = setTimeout(() => {
+            yellowFood = null;
+        }, 60000); // Desaparece após 1 minuto
+    }
 }
 
-// Função para desenhar a cobra e a comida
 function drawGame() {
     if (gameOver) return;
 
@@ -36,29 +44,35 @@ function drawGame() {
 
     snake.unshift(head);
 
-    if (head.x === food.x && head.y === food.y) {
-        score += 10;
-        generateFood();
+    if (head.x === redFood.x && head.y === redFood.y) {
+        score += 1;
+        redFoodCount++;
+        generateFood("red");
+        if (redFoodCount === 10) {
+            generateFood("yellow");
+            redFoodCount = 0;
+        }
+    } else if (yellowFood && head.x === yellowFood.x && head.y === yellowFood.y) {
+        score += 50;
+        yellowFood = null;
     } else {
         snake.pop();
     }
 
     ctx.clearRect(0, 0, canvasSize, canvasSize);
 
-    ctx.strokeStyle = "#fff";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(canvasSize - 1, 0);
-    ctx.lineTo(canvasSize - 1, canvasSize);
-    ctx.stroke();
-
     ctx.fillStyle = "#00FF00";
     snake.forEach(segment => {
         ctx.fillRect(segment.x, segment.y, gridSize, gridSize);
     });
 
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(food.x, food.y, gridSize, gridSize);
+    ctx.fillStyle = "red";
+    ctx.fillRect(redFood.x, redFood.y, gridSize, gridSize);
+
+    if (yellowFood) {
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(yellowFood.x, yellowFood.y, gridSize, gridSize);
+    }
 
     document.getElementById("score").textContent = `Pontuação: ${score}`;
     setTimeout(drawGame, 100);
@@ -121,7 +135,10 @@ function startGame() {
     ];
     dx = gridSize;
     dy = 0;
-    generateFood();
+    redFoodCount = 0;
+    generateFood("red");
+    yellowFood = null;
+    clearTimeout(yellowFoodTimer);
     restartButton.style.display = "none";
     startButton.style.display = "none";
     drawGame();
