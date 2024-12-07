@@ -16,10 +16,11 @@ let snake, food, specialFood, dx, dy, gameOver;
 let specialFoodTimeout;
 let foodCounter = 0;
 
-// Exibe o jogo após clicar em "Jogar"
+// Mostra o jogo após clicar em "Jogar"
 proceedButton.addEventListener("click", () => {
-    introScreen.style.display = "none";
-    gameContainer.style.display = "block";
+    introScreen.style.display = "none"; // Esconde a tela de introdução
+    gameContainer.style.display = "block"; // Mostra o container do jogo
+    startButton.style.display = "inline-block"; // Mostra o botão iniciar
 });
 
 // Gera comida em posição aleatória
