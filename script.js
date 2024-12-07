@@ -20,7 +20,6 @@ let foodCounter = 0;
 proceedButton.addEventListener("click", () => {
     introScreen.style.display = "none"; // Esconde a tela de introdução
     gameContainer.style.display = "block"; // Mostra o container do jogo
-    startButton.style.display = "inline-block"; // Mostra o botão iniciar
 });
 
 // Gera comida em posição aleatória
@@ -113,28 +112,20 @@ function isCollisionWithBody(head) {
 
 // Controla a direção da cobra
 function changeDirection(event) {
-    const direction = event.key || event.target.dataset.dir;
+    const direction = event.key;
 
-    if (direction === "ArrowUp" || direction === "up") {
-        if (dy === 0) {
-            dx = 0;
-            dy = -gridSize;
-        }
-    } else if (direction === "ArrowDown" || direction === "down") {
-        if (dy === 0) {
-            dx = 0;
-            dy = gridSize;
-        }
-    } else if (direction === "ArrowLeft" || direction === "left") {
-        if (dx === 0) {
-            dx = -gridSize;
-            dy = 0;
-        }
-    } else if (direction === "ArrowRight" || direction === "right") {
-        if (dx === 0) {
-            dx = gridSize;
-            dy = 0;
-        }
+    if (direction === "ArrowUp" && dy === 0) {
+        dx = 0;
+        dy = -gridSize;
+    } else if (direction === "ArrowDown" && dy === 0) {
+        dx = 0;
+        dy = gridSize;
+    } else if (direction === "ArrowLeft" && dx === 0) {
+        dx = -gridSize;
+        dy = 0;
+    } else if (direction === "ArrowRight" && dx === 0) {
+        dx = gridSize;
+        dy = 0;
     }
 }
 
@@ -170,8 +161,3 @@ function restartGame() {
 document.addEventListener("keydown", changeDirection);
 startButton.addEventListener("click", startGame);
 restartButton.addEventListener("click", restartGame);
-
-// Controle de toque para dispositivos móveis
-document.querySelectorAll(".control-btn").forEach(button => {
-    button.addEventListener("click", changeDirection);
-});
