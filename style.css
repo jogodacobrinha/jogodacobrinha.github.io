@@ -1,4 +1,4 @@
-/* Estilo existente */
+/* Estilo base */
 * {
     margin: 0;
     padding: 0;
@@ -12,12 +12,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
 
 .game-container {
     text-align: center;
-    position: relative;
 }
 
 h1 {
@@ -26,19 +24,68 @@ h1 {
     color: #333;
 }
 
+.game-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Estilização do canvas */
 #gameCanvas {
     background-color: #222;
     border: 2px solid #fff;
     border-radius: 10px;
 }
 
-#score {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+/* Painel de pontuação */
+.score-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
     color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    height: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.score-panel h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.score-panel #score {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.info {
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+}
+
+.red-dot, .yellow-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.red-dot {
+    background-color: red;
+}
+
+.yellow-dot {
+    background-color: yellow;
+}
+
+/* Botões */
 #buttons {
     margin-top: 20px;
 }
@@ -93,30 +140,4 @@ button:disabled {
     background-color: #555;
     transform: scale(0.9);
     transition: transform 0.1s;
-}
-
-/* Info lateral */
-.info {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 14px;
-    color: #fff;
-    text-align: left;
-}
-
-.red-dot, .yellow-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.red-dot {
-    background-color: red;
-}
-
-.yellow-dot {
-    background-color: yellow;
 }
