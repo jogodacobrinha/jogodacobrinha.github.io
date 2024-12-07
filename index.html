@@ -8,21 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <h1>Jogo da Cobrinha</h1>
-            <p>Use as setas para controlar a cobra e comer as comidas para ganhar pontos.</p>
-            <p><strong>Comida Vermelha:</strong> 1 ponto</p>
-            <p><strong>Comida Amarela:</strong> 50 pontos (aparece a cada 10 comidas vermelhas e tem 1 minuto de tempo)</p>
-            <p><strong>Instruções:</strong> Não bata nas paredes nem na própria cobra!</p>
-            <p><a href="https://joao12394.github.io" target="_blank">Criado por Susta</a></p>
-            <button id="startButton">Iniciar</button>
-            <button id="restartButton" style="display:none;">Reiniciar</button>
-            <div id="scorePanel">
-                <p>Pontuação: <span id="score">0</span></p>
-                <p>Tempo até comida amarela desaparecer: <span id="timer">60</span> segundos</p>
-            </div>
-        </div>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="scorePanel">
+            <p>Pontuação: <span id="score">0</span></p>
+            <p>Tempo até comida amarela desaparecer: <span id="timer">60</span> segundos</p>
+            <button id="restartButton" style="display:none;">Reiniciar</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
