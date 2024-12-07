@@ -7,25 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Tela de introdução -->
-    <div class="intro-screen">
-        <h1>Bem-vindo ao Jogo da Cobrinha!</h1>
-        <p>
-            Regras e Dicas:
-            <ul>
-                <li>Coma as comidas vermelhas para ganhar 1 ponto.</li>
-                <li>A cada 10 comidas vermelhas, aparece uma comida amarela valendo 50 pontos.</li>
-                <li>Se não pegar a comida amarela em 1 minuto, ela desaparece.</li>
-            </ul>
-        </p>
-        <p>
-            Criado por <a href="https://joao12394.github.io" target="_blank">Susta</a>
-        </p>
-        <button id="proceedButton">Jogar</button>
-    </div>
-
-    <!-- Tela do jogo -->
-    <div class="game-container" style="display: none;">
+    <div class="game-container">
         <h1>Jogo da Cobrinha</h1>
         <div class="score-panel">
             <p><strong>Pontuação:</strong> <span id="score">0</span></p>
@@ -38,7 +20,6 @@
             <button id="restartButton" style="display: none;">Reiniciar</button>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
