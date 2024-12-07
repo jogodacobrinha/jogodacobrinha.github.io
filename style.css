@@ -12,16 +12,72 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.game-container {
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 30px;
+/* Tela inicial */
+.intro-screen {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.intro-screen h1 {
     color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.instructions {
+    margin: 10px 0;
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #555;
+}
+
+.tips {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.creator-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.creator-info a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.creator-info a:hover {
+    text-decoration: underline;
+}
+
+#proceedButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#proceedButton:hover {
+    background-color: #555;
+}
+
+/* Estilo do jogo (mantido) */
+.game-container {
+    text-align: center;
 }
 
 .game-content {
@@ -31,14 +87,12 @@ h1 {
     gap: 20px;
 }
 
-/* Estilização do canvas */
 #gameCanvas {
     background-color: #222;
     border: 2px solid #fff;
     border-radius: 10px;
 }
 
-/* Painel de pontuação */
 .score-panel {
     display: flex;
     flex-direction: column;
@@ -83,61 +137,4 @@ h1 {
 
 .yellow-dot {
     background-color: yellow;
-}
-
-/* Botões */
-#buttons {
-    margin-top: 20px;
-}
-
-button {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-button:disabled {
-    background-color: #888;
-    cursor: not-allowed;
-}
-
-/* Controles móveis */
-.controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.horizontal-controls {
-    display: flex;
-    justify-content: center;
-}
-
-.control-btn {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    font-size: 18px;
-    background-color: #333;
-    color: white;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;
-}
-
-.control-btn:active {
-    background-color: #555;
-    transform: scale(0.9);
-    transition: transform 0.1s;
 }
