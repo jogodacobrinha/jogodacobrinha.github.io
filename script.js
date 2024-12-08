@@ -3,8 +3,8 @@ const ctx = canvas.getContext("2d");
 const startScreen = document.getElementById("start-screen");
 const startButton = document.getElementById("start-btn");
 
-const gridSize = 20;  // Tamanho das células do grid
-const tileCount = 20; // Número de células em cada linha e coluna
+const gridSize = 20;
+const tileCount = 20;
 canvas.width = gridSize * tileCount;
 canvas.height = gridSize * tileCount;
 
@@ -12,32 +12,31 @@ let snake = [
     { x: 5, y: 5 },
     { x: 4, y: 5 },
     { x: 3, y: 5 }
-]; // Posição inicial da cobra
-let direction = "right"; // Direção inicial
-let food = { x: 8, y: 8 }; // Posição inicial da comida
+];
+let direction = "right";
+let food = { x: 8, y: 8 };
 let score = 0;
+
+let startTime = 0;
+let elapsedTime = 0;
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Desenhar a cobra
     snake.forEach((segment, index) => {
-        ctx.fillStyle = index === 0 ? "green" : "lime"; // Cabeça da cobra é verde
+        ctx.fillStyle = index === 0 ? "green" : "lime";
         ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
     });
 
-    // Desenhar a comida
     ctx.fillStyle = "red";
     ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 
-    // Mostrar a pontuação
     ctx.fillStyle = "white";
     ctx.font = "20px Arial";
     ctx.fillText("Score: " + score, 10, 20);
 }
 
 function update() {
-    // Mover a cobra
     const head = { ...snake[0] };
 
     if (direction === "right") head.x++;
@@ -47,15 +46,13 @@ function update() {
 
     snake.unshift(head);
 
-    // Verificar se a cobra comeu a comida
     if (head.x === food.x && head.y === food.y) {
         score++;
         placeFood();
     } else {
-        snake.pop(); // Remover a cauda se não comeu
+        snake.pop();
     }
 
-    // Verificar colisão com as paredes ou com o próprio corpo
     if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount || isCollidingWithSelf(head)) {
         resetGame();
     }
@@ -83,6 +80,7 @@ function resetGame() {
     direction = "right";
     score = 0;
     placeFood();
+    startTime = Date.now();  // Reiniciar o tempo
 }
 
 function changeDirection(event) {
@@ -100,13 +98,19 @@ function gameLoop() {
 function startGame() {
     startScreen.style.display = "none";
     canvas.style.display = "block";
+    startTime = Date.now();
     gameLoop();
+    setInterval(updateTime, 1000);
+}
+
+function updateTime() {
+    elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+    document.getElementById("time-display").textContent = "Tempo: " + elapsedTime + "s";
 }
 
 startButton.addEventListener("click", startGame);
 document.addEventListener("keydown", changeDirection);
 
-// Controles para mobile
 document.getElementById("up-btn").addEventListener("click", () => {
     if (direction !== "down") direction = "up";
 });
